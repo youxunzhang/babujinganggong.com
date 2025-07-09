@@ -1,0 +1,1 @@
+news1.html 引用了 main.css，其他文件都是独立静态文件

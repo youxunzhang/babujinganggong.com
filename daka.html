@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八部金刚功打卡 - 记录练功历程 | babujinganggong.com</title>
+    <meta name="description" content="八部金刚功打卡系统，记录每日练功情况，包括练功时长、难度感受、身体变化等。帮助您坚持练习，见证健康改善的每一步。">
+    <meta name="keywords" content="八部金刚功,打卡,练功记录,健康打卡,养生打卡,练功日记">
+    <link rel="canonical" href="https://www.babujinganggong.com/daka.html">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+
+    <style>
+        /* CSS Variables for Apple-like Colors */
+        :root {
+            --color-primary: #007AFF; /* Apple Blue */
+            --color-secondary: #5AC8FA; /* Lighter Blue */
+            --color-text-dark: #1D1D1F; /* Apple Dark Gray */
+            --color-text-medium: #6A6A6A; /* Medium Gray */
+            --color-text-light: #86868B; /* Light Gray */
+            --color-background-light: #F5F5F7; /* Light Gray Background */
+            --color-background-white: #FFFFFF; /* Pure White */
+            --color-border-light: rgba(0, 0, 0, 0.1); /* Light Border */
+            --color-gradient-start: #007AFF;
+            --color-gradient-end: #5856D6; /* Deep Purple-Blue */
+            --color-highlight-yellow: #FFCC00; /* For accent elements like numbers */
+            --color-success: #34C759; /* Green for success */
+            --color-warning: #FF9500; /* Orange for warning */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background: var(--color-background-light);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--color-border-light);
+            transition: all 0.3s ease-in-out;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--color-text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            left: 50%;
+            bottom: -5px;
+            transform: translateX(-50%);
+            transition: width 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--color-text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .mobile-menu.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-menu.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-nav-links {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 250px;
+            height: 100%;
+            background: var(--color-background-white);
+            box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+            padding-top: 80px;
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .mobile-nav-links.open {
+            right: 0;
+        }
+
+        .mobile-nav-links li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--color-text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid var(--color-border-light);
+            transition: background-color 0.2s ease;
+        }
+        .mobile-nav-links li:last-child a {
+            border-bottom: none;
+        }
+
+        .mobile-nav-links li a:hover {
+            background-color: var(--color-background-light);
+            color: var(--color-primary);
+        }
+
+        /* 主要内容区域 */
+        main {
+            margin-top: 80px;
+        }
+
+        /* 页面头部 */
+        .page-header {
+            background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 打卡区域 */
+        .daka-section {
+            padding: 3rem 0;
+        }
+
+        .daka-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .daka-card {
+            background: var(--color-background-white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .daka-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--color-text-dark);
+            font-size: 1rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            padding: 12px 16px;
+            border: 2px solid var(--color-border-light);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--color-background-light);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            background: var(--color-background-white);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .difficulty-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .difficulty-option {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .difficulty-option input[type="radio"] {
+            display: none;
+        }
+
+        .difficulty-option label {
+            display: block;
+            padding: 12px 16px;
+            border: 2px solid var(--color-border-light);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--color-background-light);
+        }
+
+        .difficulty-option input[type="radio"]:checked + label {
+            border-color: var(--color-primary);
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .submit-btn {
+            background: var(--color-primary);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--color-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: var(--color-text-light);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* 统计卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--color-background-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--color-text-medium);
+            font-size: 0.9rem;
+        }
+
+        /* 历史记录 */
+        .history-section {
+            background: var(--color-background-white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .history-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text-dark);
+        }
+
+        .clear-history {
+            background: var(--color-warning);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-history:hover {
+            background: #E6850E;
+        }
+
+        .history-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            padding: 1rem;
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            background: var(--color-background-light);
+        }
+
+        .history-date {
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .history-content {
+            color: var(--color-text-medium);
+            font-size: 0.9rem;
+        }
+
+        /* 成功提示 */
+        .success-message {
+            background: var(--color-success);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--color-text-dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .footer-section p, .footer-section ul {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            list-style: none;
+        }
+        .footer-section ul li a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .footer-section ul li a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+        .footer-bottom a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .footer-bottom a:hover {
+            color: var(--color-primary);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .daka-card {
+                padding: 1.5rem;
+            }
+
+            .difficulty-options {
+                flex-direction: column;
+            }
+
+            .difficulty-option {
+                min-width: auto;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .history-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 40px 0;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">八部金刚功</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="index.html#videos">视频教学</a></li>
+                <li><a href="index.html#daochang">道长视频</a></li>
+                <li><a href="daka.html" class="active">金刚功打卡</a></li>
+                <li><a href="index.html#about">功法介绍</a></li>
+                <li><a href="index.html#exercises">八部功法</a></li>
+                <li><a href="index.html#benefits">功效益处</a></li>
+                <li><a href="newslist.html">资讯文章</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <ul class="mobile-nav-links" id="mobile-nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="index.html#videos">视频教学</a></li>
+        <li><a href="index.html#daochang">道长视频</a></li>
+        <li><a href="daka.html">金刚功打卡</a></li>
+        <li><a href="index.html#about">功法介绍</a></li>
+        <li><a href="index.html#exercises">八部功法</a></li>
+        <li><a href="index.html#benefits">功效益处</a></li>
+        <li><a href="newslist.html">资讯文章</a></li>
+    </ul>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>八部金刚功打卡</h1>
+                <p>记录每日练功历程，见证健康改善的每一步</p>
+            </div>
+        </section>
+
+        <section class="daka-section">
+            <div class="container">
+                <div class="daka-container">
+                    <!-- 统计卡片 -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalDays">0</div>
+                            <div class="stat-label">累计打卡天数</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalTime">0</div>
+                            <div class="stat-label">总练功时长(分钟)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="currentStreak">0</div>
+                            <div class="stat-label">连续打卡天数</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="avgDuration">0</div>
+                            <div class="stat-label">平均时长(分钟)</div>
+                        </div>
+                    </div>
+
+                    <!-- 打卡表单 -->
+                    <div class="daka-card">
+                        <h2 style="margin-bottom: 1.5rem; color: var(--color-text-dark);">今日打卡</h2>
+                        
+                        <div class="success-message" id="successMessage">
+                            ✅ 打卡成功！您的练功记录已保存。
+                        </div>
+
+                        <form class="daka-form" id="dakaForm">
+                            <div class="form-group">
+                                <label class="form-label">练功日期</label>
+                                <input type="date" class="form-input" id="dakaDate" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">练功时长 (分钟)</label>
+                                <input type="number" class="form-input" id="dakaDuration" min="1" max="300" placeholder="请输入练功时长" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">练功难度</label>
+                                <div class="difficulty-options">
+                                    <div class="difficulty-option">
+                                        <input type="radio" id="easy" name="difficulty" value="轻松" required>
+                                        <label for="easy">轻松</label>
+                                    </div>
+                                    <div class="difficulty-option">
+                                        <input type="radio" id="normal" name="difficulty" value="适中" required>
+                                        <label for="normal">适中</label>
+                                    </div>
+                                    <div class="difficulty-option">
+                                        <input type="radio" id="hard" name="difficulty" value="困难" required>
+                                        <label for="hard">困难</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">练功感受</label>
+                                <textarea class="form-textarea" id="dakaFeeling" placeholder="请描述今天的练功感受，比如身体变化、心情状态等..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn" id="submitBtn">提交打卡</button>
+                        </form>
+                    </div>
+
+                    <!-- 历史记录 -->
+                    <div class="history-section">
+                        <div class="history-header">
+                            <h3 class="history-title">练功历史记录</h3>
+                            <button class="clear-history" id="clearHistory">清空记录</button>
+                        </div>
+                        <div class="history-list" id="historyList">
+                            <!-- 历史记录将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于八部金刚功</h3>
+                    <p>babujinganggong.com致力于推广道家传统养生功法"八部金刚功"，提供权威教学视频、功法解析、健康资讯，助您强身健体，延年益寿。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速导航</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="index.html#videos">视频教学</a></li>
+                        <li><a href="index.html#daochang">道长视频</a></li>
+                        <li><a href="daka.html">金刚功打卡</a></li>
+                        <li><a href="index.html#about">功法介绍</a></li>
+                        <li><a href="index.html#exercises">八部功法</a></li>
+                        <li><a href="index.html#benefits">功效益处</a></li>
+                        <li><a href="newslist.html">资讯文章</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>Email: </p>
+                    <p>微信: </p>
+                    <p>地址: </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 babujinganggong.com. 版权所有。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileNavLinks = document.getElementById('mobile-nav-links');
+        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('open');
+            mobileNavLinks.classList.toggle('open');
+            mobileNavOverlay.style.display = mobileNavLinks.classList.contains('open') ? 'block' : 'none';
+        });
+
+        mobileNavOverlay.addEventListener('click', () => {
+            mobileMenuToggle.classList.remove('open');
+            mobileNavLinks.classList.remove('open');
+            mobileNavOverlay.style.display = 'none';
+        });
+
+        // 打卡功能
+        let dakaRecords = JSON.parse(localStorage.getItem('dakaRecords')) || [];
+
+        // 设置默认日期为今天
+        document.getElementById('dakaDate').valueAsDate = new Date();
+
+        // 提交打卡
+        document.getElementById('dakaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const date = document.getElementById('dakaDate').value;
+            const duration = parseInt(document.getElementById('dakaDuration').value);
+            const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
+            const feeling = document.getElementById('dakaFeeling').value;
+
+            // 检查是否已经打卡
+            const existingRecord = dakaRecords.find(record => record.date === date);
+            if (existingRecord) {
+                alert('今天已经打卡了！');
+                return;
+            }
+
+            // 添加新记录
+            const newRecord = {
+                date: date,
+                duration: duration,
+                difficulty: difficulty,
+                feeling: feeling
+            };
+
+            dakaRecords.push(newRecord);
+            localStorage.setItem('dakaRecords', JSON.stringify(dakaRecords));
+
+            // 显示成功消息
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
+
+            // 重置表单
+            document.getElementById('dakaForm').reset();
+            document.getElementById('dakaDate').valueAsDate = new Date();
+
+            // 更新显示
+            updateStats();
+            displayDakaHistory();
+        });
+
+        // 清空历史记录
+        document.getElementById('clearHistory').addEventListener('click', function() {
+            if (confirm('确定要清空所有打卡记录吗？此操作不可恢复。')) {
+                dakaRecords = [];
+                localStorage.setItem('dakaRecords', JSON.stringify(dakaRecords));
+                updateStats();
+                displayDakaHistory();
+            }
+        });
+
+        // 更新统计数据
+        function updateStats() {
+            const totalDays = dakaRecords.length;
+            const totalTime = dakaRecords.reduce((sum, record) => sum + record.duration, 0);
+            const avgDuration = totalDays > 0 ? Math.round(totalTime / totalDays) : 0;
+
+            // 计算连续打卡天数
+            let currentStreak = 0;
+            if (dakaRecords.length > 0) {
+                const sortedRecords = dakaRecords.sort((a, b) => new Date(b.date) - new Date(a.date));
+                const today = new Date().toISOString().split('T')[0];
+                let checkDate = new Date(today);
+                
+                for (let i = 0; i < sortedRecords.length; i++) {
+                    const recordDate = new Date(sortedRecords[i].date);
+                    const diffTime = checkDate - recordDate;
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    
+                    if (diffDays <= 1) {
+                        currentStreak++;
+                        checkDate = recordDate;
+                    } else {
+                        break;
+                    }
+                }
+            }
+
+            document.getElementById('totalDays').textContent = totalDays;
+            document.getElementById('totalTime').textContent = totalTime;
+            document.getElementById('currentStreak').textContent = currentStreak;
+            document.getElementById('avgDuration').textContent = avgDuration;
+        }
+
+        // 显示历史记录
+        function displayDakaHistory() {
+            const historyList = document.getElementById('historyList');
+            const sortedRecords = dakaRecords.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            if (sortedRecords.length === 0) {
+                historyList.innerHTML = '<p style="text-align: center; color: var(--color-text-medium); padding: 2rem;">暂无打卡记录</p>';
+                return;
+            }
+
+            historyList.innerHTML = sortedRecords.map(record => `
+                <div class="history-item">
+                    <div class="history-date">${formatDate(record.date)} - ${record.duration}分钟 - ${record.difficulty}</div>
+                    <div class="history-content">${record.feeling}</div>
+                </div>
+            `).join('');
+        }
+
+        // 格式化日期
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+            displayDakaHistory();
+        });
+    </script>
+</body>
+</html> 
