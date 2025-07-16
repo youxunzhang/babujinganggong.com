@@ -1,16 +1,17 @@
-/* CSS Variables for Apple-like Colors */
+/* CSS Variables for Traditional Yellow-Blue Theme */
 :root {
-    --color-primary: #007AFF; /* Apple Blue */
-    --color-secondary: #5AC8FA; /* Lighter Blue */
-    --color-text-dark: #1D1D1F; /* Apple Dark Gray */
-    --color-text-medium: #6A6A6A; /* Medium Gray */
-    --color-text-light: #86868B; /* Light Gray */
-    --color-background-light: #F5F5F7; /* Light Gray Background */
-    --color-background-white: #FFFFFF; /* Pure White */
-    --color-border-light: rgba(0, 0, 0, 0.1); /* Light Border */
-    --color-gradient-start: #007AFF;
-    --color-gradient-end: #5856D6; /* Deep Purple-Blue */
-    --color-highlight-yellow: #FFCC00; /* For accent elements like numbers */
+    --color-primary: #1e3a8a; /* Deep Blue */
+    --color-secondary: #f59e0b; /* Golden Yellow */
+    --color-accent: #fbbf24; /* Light Yellow */
+    --color-text-dark: #1f2937; /* Dark Gray */
+    --color-text-medium: #4b5563; /* Medium Gray */
+    --color-text-light: #6b7280; /* Light Gray */
+    --color-background-light: #f8fafc; /* Light Background */
+    --color-background-white: #ffffff; /* Pure White */
+    --color-border-light: rgba(30, 58, 138, 0.1); /* Light Border */
+    --color-gradient-start: #1e3a8a;
+    --color-gradient-end: #1e40af; /* Darker Blue */
+    --color-highlight-yellow: #fbbf24; /* For accent elements like numbers */
 }
 
 * {
